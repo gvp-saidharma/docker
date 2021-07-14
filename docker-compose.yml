@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  eurekaserver:
+    image: "saidharmareddy/eurekaserver"
+    ports:
+      - "3001:3001"
+    networks:
+      - backend
+  user:
+    image: "saidharmareddy/user"
+    ports:
+      - "3004:3004"
+    networks:
+      - backend
+  gateway:
+    image: "saidharmareddy/gateway"
+    ports:
+      - "80:80"
+    networks:
+      - backend
+    depends_on: 
+      - eurekaserver
+      - user
+networks:
+  backend:
+    driver: bridge
