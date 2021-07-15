@@ -1,0 +1,21 @@
+curl "http://localhost:3001/actuator/health"
+
+curl "http://localhost:80/coursefallback"
+curl "http://localhost:80/paymentfallback"
+
+curl --location --request POST 'http://localhost:80/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "dharma",
+    "password": "dharmap"
+}'
+
+curl --location --request GET 'http://localhost:80/test' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaGFybWEiLCJpZCI6MiwidXNlcm5hbWUiOiJkaGFybWEiLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImlhdCI6MTYyNjMzNzc2NSwiZXhwIjoxNjI2MzczNzY1fQ.7OurXzV8erdFTNoWohcNa-17katVSI8GSCOL27emEeTtmSphmirl93Jc_5guz0TQp5EbB0l2DNzPlW6LzNtUeA' \
+--header 'Content-Type: application/json' 
+
+curl --location --request GET 'http://localhost:80/mycourse' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkaGFybWEiLCJpZCI6MiwidXNlcm5hbWUiOiJkaGFybWEiLCJhdXRob3JpdGllcyI6IlJPTEVfVVNFUiIsImlhdCI6MTYyNjE1ODI4NSwiZXhwIjoxNjI2MTk0Mjg1fQ.hpuWCEY9oPfCuWoDAOSCqSZr-KAAhoTphmouPLuaqzWH1tDAfHnB9DZQeYQO0-_zyDO9LIjw1eHKdmRSUcJbgQ' \
+--data-raw ''
+

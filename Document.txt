@@ -1,0 +1,96 @@
+https://github.com/TechPrimers/spring-boot-config-server-example
+https://github.com/TechPrimers/stock-price-viewer-microservices-part1
+https://github.com/TechPrimers/stock-price-viewer-microservices-part2-final
+https://github.com/spencergibb/monolith-to-microservices
+
+https://www.youtube.com/watch?v=b2ih5RCuxTM
+https://www.youtube.com/watch?v=ifBFwH59gGA&feature=emb_title   (Designing Microservices using Spring Boot, Spring Cloud, Eureka and Zuul | #2 | Tech Primers)
+https://www.youtube.com/watch?v=NkgooKSeF8w						(Introducing Spring Cloud Gateway by Spencer Gibb @ Spring I/O 2018)
+https://www.youtube.com/watch?v=VHTli6KQO54&feature=emb_title  (Spring Cloud Sleuth)
+https://www.youtube.com/watch?v=gPKJkY2t7Pc&feature=emb_title  (Distributed log tracing in Microservices using Spring Cloud Sleuth with Example | Tech Primers)
+https://www.youtube.com/watch?v=a6Sxyc1v7U4&feature=emb_title (Spring Cloud Microservices - Feign Client + Eureka + Rest)
+https://www.youtube.com/watch?v=3s2lSD50-JI&feature=emb_title  (Spring Security in a Spring Boot App with Example | Tech Primers)
+https://www.youtube.com/watch?v=-HYrUs1ZCLI&feature=emb_title   (Spring Security using JWT in Spring Boot App | Tech Primers)
+https://www.youtube.com/watch?time_continue=1&v=0cvnY7kM0Mk&feature=emb_title (Securing Spring applications with Hashicorp Vault by Jan Dittberner @ Spring I/O 2018)
+
+Eureka Server
+http://localhost:3001/
+http://localhost:3001/actuator/health
+
+Vault Server
+	C:\vault>vault.exe server -dev
+	https://127.0.0.1:8200/v1/sys/seal-status       //vault status
+	http://127.0.0.1:8200/ui/
+	Unseal Key: RGGn8mrIB+duddmjPuk+f+QKNaUp8jjiBHzquTzk4/4=
+	Root Token: s.vo644jaCC4Gc0IKUaleD0icD
+https://spring.io/guides/gs/vault-config/
+vault server --dev --dev-root-token-id="00000000-0000-0000-0000-000000000000"
+
+
+Config Server
+http://localhost:3003/application/default
+git clone "https://github.com/gvp-saidharma/springconfigrepo.git"
+
+
+user(3004)
+http://localhost:3004/api/auth
+
+course-service (3005)
+
+
+payment-service (3006)
+
+
+gateway (80)
+
+
+ec2-user@ec2-13-233-95-132.ap-south-1.compute.amazonaws.com
+
+sudo su 
+yum update -y
+yum install docker git -y
+
+systemctl start docker 
+docker run hello-world
+
+git clone "https://github.com/gvp-saidharma/eurekaserver.git"
+docker build -t saidharmareddy/eurekaserver .
+docker run -d -p 3001:3001 saidharmareddy/eurekaserver
+
+git clone "https://github.com/gvp-saidharma/gateway.git"
+docker build -t saidharmareddy/gateway .
+docker run -d -p 80:80 saidharmareddy/gateway
+
+git clone "https://github.com/gvp-saidharma/course.git"
+docker build -t saidharmareddy/course .
+docker run -d -p 3005:3005 saidharmareddy/course
+
+git clone "https://github.com/gvp-saidharma/user.git"
+docker build -t saidharmareddy/user .
+docker run -d -p 3004:3004 saidharmareddy/user
+
+
+mv /home/ec2-user/course/out/artifacts/course_jar/course.jar /home/ec2-user/course/course.jar
+docker push saidharmareddy/gateway
+rm -rf gateway
+
+
+Docker Compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+docker-compose --version
+
+
+git clone "https://github.com/gvp-saidharma/docker.git"
+docker-compose up --build -d
+
+
+docker run -d -p 3001:3001 saidharmareddy/eurekaserver
+docker run -d -p 3004:3004 saidharmareddy/user
+docker run -d -p 80:80 saidharmareddy/gateway
+docker run -d -p 3005:3005 saidharmareddy/course
+
+
+
+
